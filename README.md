@@ -31,6 +31,7 @@ python3 src/app.py
 - Add a license
 - Add an .editorconfig
 - Add a branching strategy (Contributors guide)
+- Check code style & lint with `flake8`
 - Check .editorconfig with `editorconfig-checker`
 - Check makrdown files ([markdownlint-cli](https://www.npmjs.com/package/cli-markdown))
 
