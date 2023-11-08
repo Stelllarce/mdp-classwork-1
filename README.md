@@ -35,7 +35,7 @@ python3 src/app.py
 - Check makrdown files ([markdownlint-cli](https://www.npmjs.com/package/cli-markdown))
 
 ### Unit tests and database migrations
-- Run unit tests
+- Run unit tests (`python3 -m unittest app_test.py`)
 - Check for database migrations
 - Check for hardcoded secrets ([gitleaks](https://github.com/gitleaks/gitleaks))
 - Run checks in parallel
