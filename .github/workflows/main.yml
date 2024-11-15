@@ -9,22 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     container: gradle:6-jdk11
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js (if needed for Snyk CLI)
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-
-      - name: Install Snyk CLI
-        run: npm install -g snyk
-
-      - name: Authenticate Snyk
-        run: snyk auth ${{ secrets.SNYK_TOKEN }}
-
-      - name: Run Snyk test
-        run: DEBUG=*snyk* snyk test --all-projects
-
-      - name: Monitor with Snyk
-        run: snyk monitor --all-projects
+      - name: Run snyk
+        working-directory: ${{github.workspace}}/src
+        run: |
+          pip install -r requirements.txt
+          npm install -g snyk
+          snyk auth ${{ secrets.SNYK_TOKEN }}
+          snyk test
