@@ -7,6 +7,7 @@ env: # Set the secret as an input
 jobs:
   Snyk:
     runs-on: ubuntu-latest
+    container: gradle:6-jdk11
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
