@@ -1,0 +1,4 @@
+gradle wrapper
+git add gradlew gradle/wrapper/gradle-wrapper.properties gradle/wrapper/gradle-wrapper.jar
+git commit -m "Add Gradle wrapper"
+git push

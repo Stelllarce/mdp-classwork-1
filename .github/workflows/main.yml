@@ -1,0 +1,25 @@
+name: Main workflow
+on: push
+env: # Set the secret as an input
+  docker_username: stelllarce
+  docker_password: ${{ secrets.GITHUB_TOKEN }} #Nees to be set to be made available to the workflow
+  GIT_COMMIT: ${{ github.sha }}
+jobs:
+  Snyk:
+    runs-on: ubuntu-latest
+    container: gradle:6-jdk11
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Node.js (if needed for Snyk CLI)
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Install Snyk CLI
+        run: npm install -g snyk
+      - name: Authenticate Snyk
+        run: snyk auth ${{ secrets.SNYK_TOKEN }}
+      - name: Run Snyk test
+        run: snyk test --file=app/build.gradle --all-projects
+      - name: Monitor with Snyk
+        run: snyk monitor --all-projects
